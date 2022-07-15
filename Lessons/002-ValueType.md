@@ -23,7 +23,9 @@ Hodnotový typem jsou v BCL:
 Nejzásadnější rozdíl mezi hodnotovým typem a typem referenčním je ve způsobu jejich předávání.
 Pakliže je hodnotový typ předáván, vytváří se kopie typu spolu se všemi jeho členy. Původní typ zůstává zachován. Změny provedené na kopii typu se do originálu nepromítnou. Toto chování lze změnit za použití klíčového slova [`ref`](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/ref#passing-an-argument-by-reference)
 
-```
+``` csharp
+// Ačkoliv je int hodnotový typ, užití klíčového slova ref způsobí předání odkazem.
+// Úprava takto předané proměnné se projeví i v původní hodnotě
 void Method(ref int refArgument)
 {
     refArgument = refArgument + 44;
@@ -81,7 +83,21 @@ Následující kód způsobí alokaci místa na haldě, které so po zániku ref
 ``` csharp
 // Boxed in reference type
 object v = new Vector();
+
+// Unboxed 
+int v = (Vector)v;
 ```
+### Vestavěné hodnotové typy
+
+.NET core poskytuje velké množství předpřipravených hodnotových typů, které se dají rozdělit do těchto kategorií:
+
+- Celočíselné typy
+- Typy pro čísla s plovoucí čárkou
+- Bool
+- Char
+- Enumerátory
+- Tuples (ntice)
+- Nulovatelné hodnotové typy
 
 
 https://www.c-sharpcorner.com/article/C-Sharp-heaping-vs-stacking-in-net-part-i/
@@ -91,3 +107,5 @@ https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/ref#p
 https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/choosing-between-class-and-struct
 
 https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/struct
+
+https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types
